@@ -15,22 +15,10 @@ def refresh():
 	for i in xrange(field_height):
 		for j in xrange(field_width):
 			k = 0
-			if(canvas.gettags(cell_matrix[addr(i, j-1)])[0] == 'vis'):
-				k += 1
-			if(canvas.gettags(cell_matrix[addr(i-1, j)])[0] == 'vis'):
-			    k += 1
-			if(canvas.gettags(cell_matrix[addr(i-1, j-1)])[0] == 'vis'):
-				k += 1            
-			if(canvas.gettags(cell_matrix[addr(i-1, j+1)])[0] == 'vis'):
-			    k += 1
-			if(canvas.gettags(cell_matrix[addr(i, j+1)])[0] == 'vis'):
-				k += 1
-			if(canvas.gettags(cell_matrix[addr(i+1, j-1)])[0] == 'vis'):
-				k += 1
-			if(canvas.gettags(cell_matrix[addr(i+1, j)])[0] == 'vis'):
-				k += 1
-			if(canvas.gettags(cell_matrix[addr(i+1, j+1)])[0] == 'vis'):
-				k += 1			
+			for i_shift in xrange(-1, 2):
+				for j_shift in xrange(-1, 2):
+					if (canvas.gettags(cell_matrix[addr(i + i_shift, j + j_shift)])[0] == 'vis' and (i_shift != 0 or j_shift != 0)):
+						k += 1		
 			current_tag = canvas.gettags(cell_matrix[addr(i, j)])[0]							
 			if(k == 3):
 				canvas.itemconfig(cell_matrix[addr(i, j)], tags=(current_tag, 'to_vis'))
