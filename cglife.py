@@ -1,8 +1,8 @@
 from Tkinter import Tk, Canvas, Button, Frame, BOTH, NORMAL, HIDDEN
 
 def draw_a(e):	
-	ii = (e.y - 3)/a
-	jj = (e.x - 3)/a
+	ii = (e.y-3) / cell_size
+	jj = (e.x-3) / cell_size
 	canvas.itemconfig(cell_matrix[addr(ii, jj)], state=NORMAL, tags='vis')
 
 def addr(ii,jj):
